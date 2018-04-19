@@ -1,0 +1,54 @@
+BASE URL = "https://www.okex.com/v2"
+
+1. API for listing all currencies
+ GET "https://www.okex.com/v2/markets/products"
+
+ Response: 
+	{ code:	integer (int32) (Error code 0: Success, Other: Failed)
+  
+  	data:	{
+  		baseCurrency:	integer (Trading currencies such as: ltc/etc)
+  
+  		marketFrom:	integer (Market id)
+  
+  		maxPriceDigit: integer (Trading price decimal places)
+  
+  		maxSizeDigit:	integer (The number of decimal digits of the transaction)
+  
+  		minTradeSize:	integer (Minimum transaction value)
+  
+  		online:	boolean (Whether to go online)
+  
+  		productId: integer (Market id)
+  
+  		quoteCurrency: integer (Valuation currency example RMB/USD/BTC)
+  
+  		symbol:	string (Currency pair symbol)
+  
+  		detailMsg:	string
+  		
+  		msg:	string
+	  }
+	}
+
+2. API for token price ticker
+	GET "https://www.okex.com/v2/markets/{symbol}/ticker"
+
+	Request: symbol: string (Currency pair symbol)
+
+	Response: 
+	{"code": 0, { "buy"=>"8010.5535", "change"=>"-23.4209", "changePercentage"=>"-0.29%", "close"=>"8010.5533", "createdDate"=>1523946268805, "currencyId"=>20, "dayHigh"=>"8129.0000", "dayLow"=>"7888.6878", "high"=>"8129.0000", "last"=>"8010.5533", "low"=>"7888.6878", "marketFrom"=>118, "name"=>"OKEX", "open"=>"8033.9742", "orderIndex"=>0, "productId"=>20, "sell"=>"8023.1030", "symbol"=>"btc_usdt", "volume"=>"26710.9710" }}
+
+	code: status (Error code 0: Success, Other: Failed)
+	buy: Latest purchase price
+	change: Change amount
+	changePercentage: Increase percentage
+	dayHigh: The highest trading price of the day(24hr high)
+	dayLow: The lowest trading price of the day(24hr low)
+	high: The highest price
+	last: Transaction price
+	low: Lowest transaction price
+	open: Market open price
+	close: Market close price
+	sell: Latest offer
+	volume: 24 hr volume
